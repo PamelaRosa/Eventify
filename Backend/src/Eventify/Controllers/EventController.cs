@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Eventify.Data;
 using Eventify.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,42 +12,23 @@ namespace Eventify.Controllers
     [Route("api/[controller]")]
     public class EventController : ControllerBase
     {
+        private readonly DataContext _context;
 
-        public IEnumerable<Event> _event = new Event[] {
-            new Event() {
-                Id = 1,
-                Location = "São Paulo, SP",
-                Date = DateTime.Now.AddDays(10).ToString(),
-                Theme = "Tecnologia e Inovação",
-                QtyPeople = 100,
-                Batch = "1º Lote",
-                ImageURL = "https://example.com/event-image.jpg"
-            },
-            new Event() {
-                Id = 2,
-                Location = "Rio de Janeiro, RJ",
-                Date = DateTime.Now.AddDays(1).ToString(),
-                Theme = "Desenvolvimento de Software",
-                QtyPeople = 500,
-                Batch = "2º Lote",
-                ImageURL = "https://example.com/conference-event-image.jpg"
-            }
-        };
-
-        public EventController()
+        public EventController(DataContext context)
         {
+            _context = context;
         }
 
         [HttpGet]
         public IEnumerable<Event> Get()
         {
-            return _event;
+            return _context.Events;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Event> GetById(int id)
+        public Event GetById(int id)
         {
-            return _event.Where(e => e.Id == id);
+            return _context.Events.FirstOrDefault(e => e.Id == id);
         }
         [HttpPost]
         public string Post()
