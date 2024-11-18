@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{7D8EE932-1013-4E0E-AAC4-4F9EB990822D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C549C01D-5C57-4F27-9979-69423B5739ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventify", "Backend\src\Eventify\Eventify.csproj", "{2730A5F5-7665-4F15-98A8-A3C21BCFF361}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2730A5F5-7665-4F15-98A8-A3C21BCFF361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2730A5F5-7665-4F15-98A8-A3C21BCFF361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2730A5F5-7665-4F15-98A8-A3C21BCFF361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2730A5F5-7665-4F15-98A8-A3C21BCFF361}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C549C01D-5C57-4F27-9979-69423B5739ED} = {7D8EE932-1013-4E0E-AAC4-4F9EB990822D}
+		{2730A5F5-7665-4F15-98A8-A3C21BCFF361} = {C549C01D-5C57-4F27-9979-69423B5739ED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2C11469-5A8B-4395-946E-013B95152298}
+	EndGlobalSection
+EndGlobal
