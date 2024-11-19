@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{7D8E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C549C01D-5C57-4F27-9979-69423B5739ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventify", "Backend\src\Eventify\Eventify.csproj", "{2730A5F5-7665-4F15-98A8-A3C21BCFF361}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventify", "Backend\src\EventifyAPI\Eventify.csproj", "{2730A5F5-7665-4F15-98A8-A3C21BCFF361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
