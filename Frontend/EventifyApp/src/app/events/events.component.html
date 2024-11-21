@@ -1,8 +1,60 @@
-<ul *ngFor="let event of events">
-    <li><strong>Titulo: </strong>{{event.theme}}</li>
-    <li><strong>Date: </strong>{{event.date}}</li>
-    <li><strong>Localização: </strong>{{event.location}}</li>
-    <li><strong>Quantidade de pessoas: </strong>{{event.qtyPeople}}</li>
-    <li><strong>Lote: </strong>{{event.batch}}</li>
+<section class="container py-4">
+    <h2>Eventos</h2>
     <hr>
-</ul>
+    <div class="col-5">
+        <div action="" class="form-inline">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text bg-warning" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="#currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg></span>
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="buscar"
+                    [(ngModel)]="filterList">
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive rounded border border-1">
+        <table class="table align-middle m-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Imagem</th>
+                    <th>Tema</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Qtde Pessoas</th>
+                    <th>Lote</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="events && events.length">
+                <tr *ngFor="let event of filteredEvents" class="">
+                    <td><strong>{{event.id}}</strong></td>
+                    <td>
+                        <img class="img-thumbnail" src="../../assets/img/{{event.imageURL}}"
+                            onerror="this.onerror=null;this.src='https://placehold.co/50x50';"
+                            alt="Imagem do Evento: {{event.theme}}" [style.width.px]="widthImgThumbnail">
+                    </td>
+                    <td>{{event.theme}}</td>
+                    <td>{{event.location}}</td>
+                    <td>{{event.date}}</td>
+                    <td>{{event.qtyPeople}}</td>
+                    <td>{{event.batch}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm border-0 p-0 mx-2"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-sm border-0 p-0 mx-2"> <i class="bi bi-trash3"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot *ngIf="!filteredEvents.length">
+                <tr>
+                    <td colspan="8" class="text-center text-muted">
+                        <p class="my-2">Nenhum evento encontrado.</p>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
