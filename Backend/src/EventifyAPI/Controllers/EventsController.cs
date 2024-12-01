@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Eventify.Data;
-using Eventify.Models;
+using EventifyPersistence;
+using EventifyDomain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventifyAPI.Controllers
@@ -12,9 +12,9 @@ namespace EventifyAPI.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly EventifyContext _context;
 
-        public EventsController(DataContext context)
+        public EventsController(EventifyContext context)
         {
             _context = context;
         }
