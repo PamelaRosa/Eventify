@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Eventify.Data.Migrations
+namespace EventifyAPI.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {

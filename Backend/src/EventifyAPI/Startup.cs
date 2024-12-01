@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Eventify.Data;
+using EventifyAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,7 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace Eventify
+namespace EventifyAPI
 {
     public class Startup
     {
@@ -35,7 +35,7 @@ namespace Eventify
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Eventify", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventifyAPI", Version = "v1" });
             });
         }
 
@@ -46,7 +46,7 @@ namespace Eventify
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventify v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventifyAPI v1"));
             }
 
             app.UseHttpsRedirection();

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Eventify.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Eventify.Data
+namespace EventifyAPI.Data
 {
     public class DataContext : DbContext
     {

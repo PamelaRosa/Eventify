@@ -6,7 +6,7 @@ using Eventify.Data;
 using Eventify.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Eventify.Controllers
+namespace EventifyAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
