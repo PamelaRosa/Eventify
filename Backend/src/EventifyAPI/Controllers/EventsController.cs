@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EventifyPersistence;
 using EventifyDomain;
 using Microsoft.AspNetCore.Mvc;
+using EventifyPersistence.Contexts;
 
 namespace EventifyAPI.Controllers
 {

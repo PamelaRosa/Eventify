@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EventifyDomain;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventifyPersistence
+namespace EventifyPersistence.Contexts
 {
     public class EventifyContext : DbContext
     {
