@@ -6,8 +6,8 @@ namespace EventifyPersistence.Contracts
 {
     public interface ISpeakerPersist
     {
-        Task<Speaker[]> GetAllSpeakersAsync(bool includeEvents);
-        Task<Speaker[]> GetAllSpeakersByNameAsync(string Name, bool includeEvents);
-        Task<Speaker> GetSpeakerByIdAsync(int SpeakerId, bool includeEvents);
+        Task<Speaker[]> GetAllSpeakersAsync(bool includeEvents = false);
+        Task<Speaker[]> GetAllSpeakersByNameAsync(string Name, bool includeEvents = false);
+        Task<Speaker> GetSpeakerByIdAsync(int speakerId, bool includeEvents = false);
     }
 }
