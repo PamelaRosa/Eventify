@@ -15,7 +15,18 @@ namespace EventifyPersistence.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SpeakerEvent>()
-            .HasKey(SE => new { SE.EventId, SE.SpeakerId });
+                .HasKey(SE => new { SE.EventId, SE.SpeakerId });
+
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.SocialMedia)
+                .WithOne(sm => sm.Event)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            modelBuilder.Entity<Speaker>()
+                .HasMany(e => e.SocialMedia)
+                .WithOne(sm => sm.Speaker)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

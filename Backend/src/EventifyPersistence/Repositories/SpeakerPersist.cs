@@ -29,7 +29,7 @@ namespace EventifyPersistence
                 .AsNoTracking();
             }
 
-            query = query.OrderBy(s => s.Id);
+            query = query.AsNoTracking().OrderBy(s => s.Id);
 
             return await query.ToArrayAsync();
         }
@@ -47,7 +47,7 @@ namespace EventifyPersistence
                 .AsNoTracking();
             }
 
-            query = query.OrderBy(e => e.Id).Where(s => s.Name.ToLower().Contains(name.ToLower()));
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(s => s.Name.ToLower().Contains(name.ToLower()));
 
             return await query.ToArrayAsync();
         }
@@ -65,7 +65,7 @@ namespace EventifyPersistence
                 .AsNoTracking();
             }
 
-            query = query.OrderBy(s => s.Id).Where(s => s.Id == speakerId);
+            query = query.AsNoTracking().OrderBy(s => s.Id).Where(s => s.Id == speakerId);
 
             return await query.FirstOrDefaultAsync();
         }

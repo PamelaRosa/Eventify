@@ -1,4 +1,8 @@
+using EventifyApplication;
+using EventifyApplication.Contracts;
+using EventifyPersistence;
 using EventifyPersistence.Contexts;
+using EventifyPersistence.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +28,15 @@ namespace EventifyAPI
             services.AddDbContext<EventifyContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
                 );
-            services.AddControllers();
+            services.AddControllers()
+            .AddNewtonsoftJson(
+                x => x.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IGenericPersist, GenericPersist>();
+            services.AddScoped<IEventPersist, EventPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

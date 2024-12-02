@@ -14,6 +14,7 @@ namespace EventifyPersistence
         public EventPersist(EventifyContext context)
         {
             _context = context;
+            // _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public async Task<Event[]> GetAllEventsAsync(bool includeSpeakers = false)
@@ -26,11 +27,10 @@ namespace EventifyPersistence
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker)
-                .AsNoTracking();
+                .ThenInclude(se => se.Speaker);
             }
 
-            query = query.OrderBy(e => e.Id);
+            query = query.AsNoTracking().OrderBy(e => e.Id);
 
             return await query.ToArrayAsync();
         }
@@ -45,11 +45,10 @@ namespace EventifyPersistence
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker)
-                .AsNoTracking();
+                .ThenInclude(se => se.Speaker);
             }
 
-            query = query.OrderBy(e => e.Id)
+            query = query.AsNoTracking().OrderBy(e => e.Id)
                         .Where(e => e.Theme.ToLower().Contains(theme.ToLower()));
 
             return await query.ToArrayAsync();
@@ -65,11 +64,10 @@ namespace EventifyPersistence
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker)
-                .AsNoTracking();
+                .ThenInclude(se => se.Speaker);
             }
 
-            query = query.OrderBy(e => e.Id)
+            query = query.AsNoTracking().OrderBy(e => e.Id)
                         .Where(e => e.Id == eventId);
 
             return await query.FirstOrDefaultAsync();
