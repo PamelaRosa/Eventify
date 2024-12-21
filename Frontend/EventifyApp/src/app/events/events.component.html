@@ -38,7 +38,7 @@
                     </td>
                     <td>{{event.theme}}</td>
                     <td>{{event.location}}</td>
-                    <td>{{event.date}}</td>
+                    <td>{{event.date | appDateTimeFormat: 'yyyy-MM-dd'}}</td>
                     <td>{{event.qtyPeople}}</td>
                     <td>{{event.batches[0] ? event.batches[0].name : ''}}</td>
                     <td class="text-center">
