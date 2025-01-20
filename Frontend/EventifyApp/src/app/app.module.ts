@@ -14,9 +14,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
-import { SpeakersComponent } from './speakers/speakers.component';
-import { NavComponent } from './nav/nav.component';
+import { EventsComponent } from './components/events/events.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+import { TitleComponent } from './shared/title/title.component';
 
 import { EventService } from './services/event.service';
 
@@ -28,7 +33,11 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     EventsComponent,
     SpeakersComponent,
     NavComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    ContactsComponent,
+    DashboardComponent,
+    ProfileComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,

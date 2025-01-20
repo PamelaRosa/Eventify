@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { EventService } from '../services/event.service';
-import { Event } from '../models/Event';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { EventService } from 'src/app/services/event.service';
+import { Event } from 'src/app/models/Event';
 
 @Component({
   selector: 'app-events',
