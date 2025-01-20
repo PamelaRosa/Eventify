@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EventService } from '../services/event.service';
 import { Event } from '../models/Event';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-events',
@@ -37,11 +38,13 @@ export class EventsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private modalService: BsModalService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   // Lifecycle Hooks
   public ngOnInit(): void {
+    this.spinner.show();
     this.getEvents();
   }
 
@@ -56,7 +59,12 @@ export class EventsComponent implements OnInit {
         this.filteredEvents = this.events;
       },
       error: (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Não foi possível carregar os eventos.', 'Erro');
         console.error('Error retrieving events:', error);
+      },
+      complete: () => {
+        this.spinner.hide();
       },
     });
   }

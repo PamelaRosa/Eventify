@@ -21,13 +21,15 @@ namespace EventifyPersistence
         {
             IQueryable<Event> query = _context.Events
             .Include(e => e.Batches)
-            .Include(e => e.SocialMedia);
+            .Include(e => e.SocialMedia)
+            .AsSplitQuery();
 
             if (includeSpeakers)
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker);
+                .ThenInclude(se => se.Speaker)
+                .AsSplitQuery();
             }
 
             query = query.AsNoTracking().OrderBy(e => e.Id);
@@ -39,13 +41,15 @@ namespace EventifyPersistence
         {
             IQueryable<Event> query = _context.Events
             .Include(e => e.Batches)
-            .Include(e => e.SocialMedia);
+            .Include(e => e.SocialMedia)
+            .AsSplitQuery();
 
             if (includeSpeakers)
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker);
+                .ThenInclude(se => se.Speaker)
+                .AsSplitQuery();
             }
 
             query = query.AsNoTracking().OrderBy(e => e.Id)
@@ -58,13 +62,15 @@ namespace EventifyPersistence
         {
             IQueryable<Event> query = _context.Events
             .Include(e => e.Batches)
-            .Include(e => e.SocialMedia);
+            .Include(e => e.SocialMedia)
+            .AsSplitQuery();
 
             if (includeSpeakers)
             {
                 query = query
                 .Include(e => e.SpeakerEvents)
-                .ThenInclude(se => se.Speaker);
+                .ThenInclude(se => se.Speaker)
+                .AsSplitQuery();
             }
 
             query = query.AsNoTracking().OrderBy(e => e.Id)
