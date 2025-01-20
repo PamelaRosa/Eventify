@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EventService } from '../services/event.service';
 import { Event } from '../models/Event';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-events',
@@ -9,12 +10,18 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
+  // Modal
   modalRef?: BsModalRef;
+
+  // Properties
   public events: Event[] = [];
   public filteredEvents: Event[] = [];
   public widthImgThumbnail = 50;
+
+  // Search filter
   private searchFilterValue: string = '';
 
+  // Accessor for search filter
   public get searchFilter(): string {
     return this.searchFilterValue;
   }
@@ -26,46 +33,68 @@ export class EventsComponent implements OnInit {
       : this.events;
   }
 
-  public filterEvents(filterBy: string): Event[] {
-    filterBy = filterBy.toLocaleLowerCase().trim();
-    return this.events.filter(
-      (event) =>
-        event.theme.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-        event.location.toLocaleLowerCase().indexOf(filterBy) !== -1
-    );
-  }
-
+  // Constructor
   constructor(
     private eventService: EventService,
-    private modalService: BsModalService
-  ) { }
+    private modalService: BsModalService,
+    private toastr: ToastrService
+  ) {}
 
+  // Lifecycle Hooks
   public ngOnInit(): void {
     this.getEvents();
   }
 
+  // Methods
+  /**
+   * Fetch events from the service.
+   */
   public getEvents(): void {
-    this.eventService.getEvents().subscribe(
-      {
-        next: (events: Event[]) => {
-          this.events = events;
-          this.filteredEvents = this.events;
-        },
-        error: (error: any) => {
-          console.error('Error retrieving events:', error)
-        }
-      });
+    this.eventService.getEvents().subscribe({
+      next: (events: Event[]) => {
+        this.events = events;
+        this.filteredEvents = this.events;
+      },
+      error: (error: any) => {
+        console.error('Error retrieving events:', error);
+      },
+    });
   }
 
-  openModal(template: TemplateRef<void>) {
+  /**
+   * Filter events by the provided search value.
+   * @param filterBy Search term
+   * @returns Filtered events
+   */
+  public filterEvents(filterBy: string): Event[] {
+    filterBy = filterBy.toLocaleLowerCase().trim();
+    return this.events.filter(
+      (event) =>
+        event.theme.toLocaleLowerCase().includes(filterBy) ||
+        event.location.toLocaleLowerCase().includes(filterBy)
+    );
+  }
+
+  /**
+   * Open a modal with the provided template.
+   * @param template Modal template reference
+   */
+  public openModal(template: TemplateRef<void>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  confirm(): void {
+  /**
+   * Confirm action in the modal.
+   */
+  public confirm(): void {
     this.modalRef?.hide();
+    this.toastr.success('O evento foi excluído com sucesso.', 'Exclusão Confirmada!')
   }
 
-  decline(): void {
+  /**
+   * Decline action in the modal.
+   */
+  public decline(): void {
     this.modalRef?.hide();
   }
 }
