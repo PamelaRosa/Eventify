@@ -1,4 +1,4 @@
-<section class="container py-4">
+<section class="container py-4 px-0">
     <app-title [title]="'Eventos'"></app-title>
     <!-- Barra de Busca -->
     <div class="col-12 col-md-12 p-0 mb-3 border rounded">
@@ -25,7 +25,7 @@
                     <th class="align-middle text-center font-weight-normal border-0">Ações</th>
                 </tr>
             </thead>
-            <tbody *ngIf="events && events.length">
+            <tbody *ngIf="events && events.length" style="font-size: 14px;">
                 <tr *ngFor="let event of filteredEvents">
                     <td class="col-1 align-middle text-center">
                         <img class="img-thumbnail" [src]="'../../assets/img/' + event.imageURL"
@@ -33,13 +33,28 @@
                             onerror="this.onerror=null;this.src='https://placehold.co/50x50';"
                             [style.width.px]="widthImgThumbnail">
                     </td>
-                    <td class="col-3 align-middle">{{ event.theme }}</td>
-                    <td class="col-3 align-middle">{{ event.location }}</td>
-                    <td class="align-middle text-center">{{ event.date | appDateTimeFormat: 'yyyy-MM-dd' }}</td>
-                    <td class="col-1 align-middle text-center">{{ event.qtyPeople }}</td>
-                    <td class="col-2 align-middle text-center">{{ event.batches[0] ? event.batches[0].name : 'N/A' }}
+                    <td class="col-auto align-middle">{{ event.theme }}</td>
+                    <td class="col-3 align-middle">
+                        <div class="d-inline-flex align-items-center"><i class="bi bi-geo-alt mr-2"></i>{{
+                            event.location }}</div>
                     </td>
-                    <td class="col-2 align-middle text-center">
+                    <td class="align-middle text-center">
+                        <div class="d-inline-flex align-items-center"><i class="bi bi-calendar mr-2"></i>{{ event.date |
+                            appDateTimeFormat: 'yyyy-MM-dd' }}</div>
+                    </td>
+                    <td class="col-auto align-middle text-center">
+                        <div class="d-inline-flex align-items-center"><i class="bi bi-people mr-2"></i>{{
+                            event.qtyPeople }}</div>
+                    </td>
+                    <td class="col-auto align-middle text-center">
+                        <ng-container *ngIf="event.batches[0]; else esgotado">
+                            <span class="badge badge-pill badge-info">{{ event.batches[0].name }}</span>
+                        </ng-container>
+                        <ng-template #esgotado>
+                            <span class="badge badge-pill badge-danger">Esgotado</span>
+                        </ng-template>
+                    </td>
+                    <td class="col-auto align-middle text-center">
                         <button type="button" class="btn btn-sm border-0 mx-2 p-1" tooltip="Editar"
                             aria-label="Editar evento">
                             <i class="bi bi-pencil-square"></i>
