@@ -7,6 +7,44 @@
 /* Importing Datepicker SCSS file. */
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
 
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
+
+$focus-box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+$focus-border-color: rgba(108, 117, 125, 0.5);
+
+$focus-box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+$focus-border-color: rgba(108, 117, 125, 0.5);
+$active-bg-color: #212529;
+$active-text-color: #fff;
+
+/* Estilo para campos de formulário */
+.form-control:focus {
+  outline: none;
+  box-shadow: $focus-box-shadow;
+  border-color: $focus-border-color;
+}
+
+/* Estilo para botões */
+.btn:focus,
+.btn:active,
+.dropdown-item:focus,
+.dropdown-item:active {
+  outline: none;
+  box-shadow: $focus-box-shadow;
+  border-color: $focus-border-color;
+  text-decoration: none;
+}
+
+.dropdown-item:active,
+.dropdown-item.active {
+  background-color: $active-bg-color;
+}
+
+/* Estilo para links */
+a:focus,
+a:active {
+  outline: none;
+  text-decoration: none;
+}
